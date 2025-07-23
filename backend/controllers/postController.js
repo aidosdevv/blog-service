@@ -24,7 +24,7 @@ exports.postRegis = async(req,res)=>{
 
 exports.getAllPosts = async (req, res, next) => {
     try {
-      const result = await pool.query('SELECT * FROM posts ORDER BY created_at DESC');
+      const result = await pool.query('SELECT posts.* ,users.username from posts left join users on posts.user_id = users.id  ORDER BY created_at DESC');
       res.json(result.rows);
     } catch (err) {
       next(err);

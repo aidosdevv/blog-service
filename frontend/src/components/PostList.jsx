@@ -22,13 +22,15 @@ const PostList = () => {
 
     fetchPosts();
   }, []);
-
+  console.log(posts)
   return (
+    
     <div className="post-list-container">
-      <h2>Блог жазбалары</h2>
+        
+      <h2>blog</h2>
       {error && <p className="error">{error}</p>}
-      {posts.length === 0 && !error && <p>Жазбалар жоқ</p>}
-      <div className="posts">
+      {posts.length === 0 && !error && <p>pustoi</p>}
+     <div className="posts">
         {posts.map((post) => (
           <div key={post.id} className="post-card">
             {post.image && (
@@ -44,7 +46,8 @@ const PostList = () => {
           </div>
         ))}
       </div>
-    </div>
+
+    </div> 
   );
 };
 
