@@ -13,7 +13,7 @@ const Login = () => {
       const res = await axios.post('http://localhost:3000/api/auth/login', { username, password });
       localStorage.setItem('token', res.data.token);
       setMessage('Сәтті кіруді');
-      setTimeout(() => window.location.href = '/posts', 1000); // Редирект после логина
+      setTimeout(() => window.location.href = '/posts', 1000); 
     } catch (err) {
       setMessage(err.response?.data?.message || 'Сервер қатесі');
     }

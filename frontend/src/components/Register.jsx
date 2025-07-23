@@ -12,7 +12,7 @@ const Register = () => {
     try {
       const res = await axios.post('http://localhost:3000/api/auth/register', { username, password });
       setMessage('Қолданушы тіркелді');
-      setTimeout(() => window.location.href = '/login', 1000); // Редирект после регистрации
+      setTimeout(() => window.location.href = '/login', 1000); 
     } catch (err) {
       setMessage(err.response?.data?.message || 'Сервер қатесі');
     }
