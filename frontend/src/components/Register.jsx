@@ -1,23 +1,50 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import './Register.css';
 
-function Register() {
+const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleRegister = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:3000/register', { username, password });
-    alert('User registered');
+    try {
+      const res = await axios.post('http://localhost:3000/api/auth/register', { username, password });
+      setMessage('Қолданушы тіркелді');
+      setTimeout(() => window.location.href = '/login', 1000); // Редирект после регистрации
+    } catch (err) {
+      setMessage(err.response?.data?.message || 'Сервер қатесі');
+    }
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <button type="submit">Register</button>
-    </form>
+    <div className="register-container">
+      <h2>Тіркелу</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Тіркелу</button>
+      </form>
+      {message && <p className={message.includes('Қате') ? 'error' : 'success'}>{message}</p>}
+    </div>
   );
-}
+};
 
 export default Register;

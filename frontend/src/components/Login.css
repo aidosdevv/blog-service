@@ -1,5 +1,5 @@
-.new-post-container {
-    max-width: 600px;
+.login-container {
+    max-width: 400px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -11,29 +11,11 @@
     margin-bottom: 15px;
   }
   
-  input[type="text"], textarea {
+  input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
-  }
-  
-  textarea {
-    height: 100px;
-  }
-  
-  .file-label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input[type="file"] {
-    width: 100%;
-  }
-  
-  .image-preview img {
-    max-width: 200px;
-    margin-top: 10px;
   }
   
   button {
