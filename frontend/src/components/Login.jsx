@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -12,8 +12,9 @@ const Login = () => {
     try {
       const res = await axios.post('http://localhost:3000/api/auth/login', { username, password });
       localStorage.setItem('token', res.data.token);
+      setIsAuthenticated(true); // Обновляем состояние авторизации
       setMessage('Сәтті кіруді');
-      setTimeout(() => window.location.href = '/posts', 1000); 
+      setTimeout(() => window.location.href = '/posts', 1000);
     } catch (err) {
       setMessage(err.response?.data?.message || 'Сервер қатесі');
     }
