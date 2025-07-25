@@ -28,7 +28,7 @@ const PostList = () => {
 
   return (
     <div className="post-list-container">
-      <h2>Блог жазбалары</h2>
+      <h2>Блог</h2>
       {loading && <p>Жүктелуде...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && posts.length === 0 && !error && <p>Жазбалар жоқ</p>}

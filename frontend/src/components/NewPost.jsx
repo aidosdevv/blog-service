@@ -42,12 +42,12 @@ const NewPost = () => {
 
   return (
     <div className="new-post-container">
-      <h2>Жаңа блог жазбасы</h2>
+      <h2>Новый блог</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">
           <input
             type="text"
-            placeholder="Тақырып"
+            placeholder="Тема"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -55,13 +55,13 @@ const NewPost = () => {
         </div>
         <div className="form-group">
           <textarea
-            placeholder="Мазмұны"
+            placeholder="Описания"
             value={content}
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="image-upload" className="file-label">Суретті таңдау</label>
+          <label htmlFor="image-upload" className="file-label">Выбрать фото</label>
           <input
             id="image-upload"
             type="file"
@@ -70,9 +70,9 @@ const NewPost = () => {
           />
           {preview && <div className="image-preview"><img src={preview} alt="Preview" /></div>}
         </div>
-        <button type="submit">Сақтау</button>
+        <button type="submit">Сохранить</button>
       </form>
-      {message && <p className={message.includes('Қате') ? 'error' : 'success'}>{message}</p>}
+      {message && <p className={message.includes('Ошибка') ? 'error' : 'success'}>{message}</p>}
     </div>
   );
 };

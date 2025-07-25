@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-      return res.status(401).json({ message: 'Токен жоқ' });
+      return res.status(401).json({ message: 'Токен нет' });
     }
 
     try {
@@ -14,7 +14,7 @@ const jwt = require('jsonwebtoken');
       req.user = decoded;
       next();
     } catch (err) {
-      res.status(403).json({ message: 'Жарамсыз токен' });
+      res.status(403).json({ message: 'Надо авторизоваться' });
     }
   };
 

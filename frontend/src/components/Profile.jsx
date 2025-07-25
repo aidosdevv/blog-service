@@ -79,7 +79,7 @@ const Profile = () => {
               <p><small>Сенен құрған Посттар: {new Date(post.created_at).toLocaleDateString()}</small></p>
               <button
                 onClick={() => handleEdit(post.id)}
-                style={{ marginRight: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', padding: '5px 10px', cursor: 'pointer' }}
+    style={{ marginRight: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', padding: '5px 10px', cursor: 'pointer' }}
               >
                 Өзгерту
               </button>

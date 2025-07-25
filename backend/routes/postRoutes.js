@@ -114,7 +114,7 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const postId = req.params.id;
     const userId = req.user.id;
-    const [post] = await db.query('SELECT user_id FROM posts WHERE id = ?', [postId]);
+    const [post] = await pool.query('SELECT user_id FROM posts WHERE id = ?', [postId]);
     if (!post || post.user_id !== userId) {
       return res.status(403).json({ message: 'Нет доступа к этому посту' });
     }
