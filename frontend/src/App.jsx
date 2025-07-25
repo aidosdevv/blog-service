@@ -5,6 +5,7 @@ import Register from './components/Register';
 import NewPost from './components/NewPost';
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
+import Profile from './components/Profile';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -14,7 +15,7 @@ function App() {
       setIsAuthenticated(!!localStorage.getItem('token'));
     };
     window.addEventListener('storage', checkAuth);
-    checkAuth(); 
+    checkAuth();
     return () => window.removeEventListener('storage', checkAuth);
   }, []);
 
@@ -30,26 +31,29 @@ function App() {
         <nav style={{ marginBottom: '20px' }}>
           {!isAuthenticated ? (
             <>
-              <Link to="/login" style={{ marginRight: '15px', color: 'white' }}>Login</Link>
-              <Link to="/register" style={{ marginRight: '15px', color: 'white' }}>Register</Link>
+              <Link to="/login" style={{ marginRight: '15px', color: 'white' }}>Кіру</Link>
+              <Link to="/register" style={{ marginRight: '15px', color: 'white' }}>Тіркелу</Link>
             </>
           ) : (
-            <button
-              onClick={handleLogout}
-              style={{
-                marginRight: '15px',
-                color: 'white',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                textDecoration: 'underline',
-              }}
-            >
-              Logout
-            </button>
+            <>
+              <Link to="/profile" style={{ marginRight: '15px', color: 'white' }}>Профиль</Link>
+              <button
+                onClick={handleLogout}
+                style={{
+                  marginRight: '15px',
+                  color: 'white',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                }}
+              >
+                Шығу
+              </button>
+            </>
           )}
-          <Link to="/new" style={{ marginRight: '15px', color: 'white' }}>New Post</Link>
-          <Link to="/posts" style={{ color: 'white' }}>Posts</Link>
+          <Link to="/new" style={{ marginRight: '15px', color: 'white' }}>Жаңа пост</Link>
+          <Link to="/posts" style={{ color: 'white' }}>Посттар</Link>
         </nav>
         <Routes>
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
@@ -57,6 +61,7 @@ function App() {
           <Route path="/new" element={<NewPost />} />
           <Route path="/posts" element={<PostList />} />
           <Route path="/post/:id" element={<PostDetail />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>

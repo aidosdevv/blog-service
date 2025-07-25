@@ -6,7 +6,7 @@ const path = require('path');
 
 const authRoutes = require('./routes/authRoutes');
 const postsRoutes = require('./routes/postRoutes');
-
+const userRoutes = require('./routes/userRoutes')
 const app = express();
 
 
@@ -24,6 +24,7 @@ app.use(limiter);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
+app.use('/api/auth', userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

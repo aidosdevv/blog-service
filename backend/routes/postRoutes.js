@@ -111,24 +111,18 @@ router.put('/:id', authenticateToken, upload.single('image'), async (req, res) =
 });
 
 router.delete('/:id', authenticateToken, async (req, res) => {
-  const postId = Number(req.params.id);
-  if (!postId || isNaN(postId)) {
-    return res.status(400).json({ message: 'Жарамсыз пост ID' });
-  }
-
-  const user_id = req.user.id;
-
   try {
-    const result = await pool.query(
-      'DELETE FROM posts WHERE id = $1 AND user_id = $2 RETURNING *',
-      [postId, user_id]
-    );
-    if (result.rows.length === 0) {
-      return res.status(404).json({ message: 'Пост табылмады немесе рұқсат жоқ' });
+    const postId = req.params.id;
+    const userId = req.user.id;
+    const [post] = await db.query('SELECT user_id FROM posts WHERE id = ?', [postId]);
+    if (!post || post.user_id !== userId) {
+      return res.status(403).json({ message: 'Нет доступа к этому посту' });
     }
-    res.json({ message: 'Пост жойылды', post: result.rows[0] });
+    await db.query('DELETE FROM posts WHERE id = ?', [postId]);
+    res.json({ message: 'Пост удалён' });
   } catch (err) {
-    res.status(500).json({ message: 'Сервер қатесі', error: err.message });
+    console.error(err);
+    res.status(500).json({ message: 'Серверная ошибка' });
   }
 });
 
