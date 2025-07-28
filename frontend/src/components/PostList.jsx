@@ -16,6 +16,7 @@ const PostList = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setPosts(res.data);
+
         setLoading(false);
       } catch (err) {
         setError('Қате: ' + (err.response?.data?.message || 'Сервер қатесі'));
@@ -35,9 +36,11 @@ const PostList = () => {
       <div className="posts">
         {posts.map((post) => (
           <div key={post.id} className="post-card">
+            
             {post.image && (
               <img
-                src={`http://localhost:3000/${post.image}`}
+                width={200}
+                src={`http://localhost:3000/uploads/${post.image}`}
                 alt={post.title}
                 className="post-image"
               />

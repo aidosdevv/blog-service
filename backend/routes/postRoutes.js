@@ -17,7 +17,7 @@ const upload = multer({ storage });
 
 router.post('/', authenticateToken, upload.single('image'), async (req, res) => {
   const { title, content } = req.body;
-  const image = req.file ? req.file.path : null;
+  const image = req.file?.filename;
   const user_id = req.user.id;
 
   if (!title) {
