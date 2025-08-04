@@ -25,7 +25,7 @@ app.use(limiter);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
-app.use('/api/auth', userRoutes);
+app.use('/api/users', userRoutes);
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Что-то пошло не так!' });
