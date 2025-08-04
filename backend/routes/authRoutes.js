@@ -4,6 +4,15 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../config/db');
 
+app.get('/test-db', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT NOW()');
+      res.send(`Database time: ${result.rows[0].now}`);
+    } catch (err) {
+      console.error('DB connection error:', err);
+      res.status(500).send('Database connection failed');
+    }
+  });
 
 router.post('/register', async (req, res) => {
 const { username, password } = req.body;
