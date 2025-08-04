@@ -14,6 +14,16 @@ router.get('/test-db', async (req, res) => {
     }
   });
 
+  router.get('/some-route', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT * FROM users');
+      res.json(result.rows);
+    } catch (err) {
+      console.error('Ошибка:', err);
+      res.status(500).json({ message: 'Ошибка сервера' });
+    }
+  });  
+
 router.post('/register', async (req, res) => {
 const { username, password } = req.body;
 
