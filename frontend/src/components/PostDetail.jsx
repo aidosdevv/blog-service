@@ -14,7 +14,7 @@ const PostDetail = () => {
     const fetchPost = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:3000/api/posts/${id}`, {
+        const res = await axios.get(`https://blog-backend-3329.onrender.com/api/posts/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setPost(res.data);
@@ -32,7 +32,7 @@ const PostDetail = () => {
     if (window.confirm('Постты жойғыңыз келеді ме?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:3000/api/posts/${id}`, {
+        await axios.delete(`https://blog-backend-3329.onrender.com/api/posts/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         navigate('/posts');
@@ -51,7 +51,7 @@ const PostDetail = () => {
       <h2>{post.title}</h2>
       {post.image && (
         <img
-          src={`http://localhost:3000/${post.image}`}
+          src={`https://blog-backend-3329.onrender.com/${post.image}`}
           alt={post.title}
           className="post-image"
         />

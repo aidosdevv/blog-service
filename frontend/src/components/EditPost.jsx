@@ -20,7 +20,7 @@ const EditPost = () => {
         }
 
         // Получение данных поста
-        const res = await axios.get(`http://localhost:3000/api/posts/${id}`, {
+        const res = await axios.get(`https://blog-backend-3329.onrender.com/api/posts/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setTitle(res.data.title);
@@ -41,7 +41,7 @@ const EditPost = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:3000/api/posts/${id}`,
+        `https://blog-backend-3329.onrender.com/api/posts/${id}`,
         { title, content },
         { headers: { Authorization: `Bearer ${token}` } }
       );

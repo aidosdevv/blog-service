@@ -24,7 +24,7 @@ const NewPost = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:3000/api/posts', formData, {
+      const res = await axios.post('https://blog-backend-3329.onrender.com/api/posts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,

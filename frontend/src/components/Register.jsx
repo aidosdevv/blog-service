@@ -12,7 +12,7 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/register', { username, password });
+      const res = await axios.post('https://blog-backend-3329.onrender.com/api/auth/register', { username, password });
       setMessage('Қолданушы сәтті тіркелді!');
       setTimeout(() => window.location.href = '/login', 1500);
     } catch (err) {

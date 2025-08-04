@@ -12,7 +12,7 @@ const PostList = () => {
     const fetchPosts = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:3000/api/posts', {
+        const res = await axios.get('https://blog-backend-3329.onrender.com/api/posts', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setPosts(res.data);
@@ -40,7 +40,7 @@ const PostList = () => {
             {post.image && (
               <img
                 width={200}
-                src={`http://localhost:3000/uploads/${post.image}`}
+                src={`https://blog-backend-3329.onrender.com/uploads/${post.image}`}
                 alt={post.title}
                 className="post-image"
               />

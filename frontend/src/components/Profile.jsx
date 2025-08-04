@@ -20,10 +20,10 @@ const Profile = () => {
 
         setIsLoading(true);
         const [profileRes, postsRes] = await Promise.all([
-          axios.get('http://localhost:3000/api/auth/profile', {
+          axios.get('https://blog-backend-3329.onrender.com/api/users/profile', {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get('http://localhost:3000/api/auth/my-posts', {
+          axios.get('https://blog-backend-3329.onrender.com/api/users/my-posts', {
             headers: { Authorization: `Bearer ${token}` },
           })
         ]);
@@ -48,7 +48,7 @@ const Profile = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:3000/api/posts/${postId}`, {
+      await axios.delete(`https://blog-backend-3329.onrender.com/api/posts/${postId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(posts.filter((post) => post.id !== postId));
