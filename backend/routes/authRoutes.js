@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../config/db');
 
-app.get('/test-db', async (req, res) => {
+router.get('/test-db', async (req, res) => {
     try {
       const result = await pool.query('SELECT NOW()');
       res.send(`Database time: ${result.rows[0].now}`);
