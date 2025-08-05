@@ -11,7 +11,9 @@ const app = express();
 
 
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); 
-app.use(cors());
+app.use(cors({
+  origin: 'chic-palmier-ac41ae.netlify.app'
+}));
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 app.use('/uploads', express.static('uploads'));
